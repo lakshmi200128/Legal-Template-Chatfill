@@ -45,12 +45,23 @@ Vercel is the recommended platform for Next.js applications and fully supports:
 If you still want to use GitHub Pages, you'll need to:
 
 1. **Enable GitHub Pages in repository settings:**
-   - Go to Settings → Pages
-   - Source: GitHub Actions
+   - Go to: https://github.com/lakshmi200128/Legal-Template-Chatfill/settings/pages
+   - Under "Build and deployment":
+     - Source: Select **"GitHub Actions"**
+     - Click **Save**
+   - The workflow will automatically enable Pages if needed
 
-2. **Build will run automatically** via the workflow in `.github/workflows/deploy.yml`
+2. **The workflow will run automatically** on every push to `main` branch
 
-3. **⚠️ Limitation:** The upload and download features will NOT work because API routes require server-side processing.
+3. **Your site will be available at:**
+   - `https://lakshmi200128.github.io/Legal-Template-Chatfill/`
+
+4. **⚠️ Important Limitation:** The upload and download features will NOT work because API routes require server-side processing. Only the static UI will work.
+
+**Note:** If you see an error about Pages not being enabled, make sure you've:
+- Enabled Pages in Settings → Pages
+- Selected "GitHub Actions" as the source
+- The workflow has the `enablement: true` parameter (already included)
 
 ### Other Deployment Options
 
