@@ -4,22 +4,37 @@
 
 **You MUST enable GitHub Pages in your repository settings BEFORE the workflow can run.**
 
+## Prerequisites
+
+1. **Repository must be Public** (for free GitHub accounts)
+   - Go to Settings → General → Danger Zone
+   - If private, change to Public (free accounts can't use Pages on private repos)
+
+2. **You must be the repository owner** or have admin access
+
 ## Step-by-Step Instructions
 
-### Step 1: Enable GitHub Pages
+### Step 1: Make Repository Public (if needed)
+
+1. Go to: https://github.com/lakshmi200128/Legal-Template-Chatfill/settings
+2. Scroll to "Danger Zone"
+3. If repository is private, click "Change visibility" → "Make public"
+
+### Step 2: Enable GitHub Pages
 
 1. **Go to your repository Settings:**
    - Visit: https://github.com/lakshmi200128/Legal-Template-Chatfill/settings/pages
 
 2. **Configure GitHub Pages:**
-   - Scroll down to the **"Pages"** section
+   - Scroll down to the **"Pages"** section (in the left sidebar)
    - Under **"Build and deployment"**:
      - **Source:** Select **"GitHub Actions"** (NOT "Deploy from a branch")
      - Click **"Save"**
 
 3. **Verify Pages is enabled:**
-   - You should see a green checkmark or confirmation message
+   - You should see "Your site is ready to be published" or a confirmation
    - The Pages section should show "GitHub Actions" as the source
+   - You should see a green checkmark or "Enabled" status
 
 ### Step 2: Run the Workflow
 
