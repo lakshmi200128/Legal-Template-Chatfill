@@ -37,14 +37,25 @@ jobs:
           NEXT_DISABLE_TURBO: 1
 
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v4
+        continue-on-error: true
+
+      - name: Check if Pages is enabled
+        if: steps.pages.outcome == 'failure'
+        run: |
+          echo "::error::GitHub Pages is not enabled. Please enable it in Settings → Pages → Source: GitHub Actions"
+          echo "Visit: https://github.com/${{ github.repository }}/settings/pages"
+          exit 1
 
       - name: Upload artifact
+        if: steps.pages.outcome == 'success'
         uses: actions/upload-pages-artifact@v3
         with:
           path: .next
 
   deploy:
+    if: needs.build.result == 'success'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
