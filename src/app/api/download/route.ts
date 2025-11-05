@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
 
     const friendlyName = fileName.replace(/\.docx$/i, "-completed.docx");
 
-    return new NextResponse(buffer, {
+    return new NextResponse(buffer as unknown as BodyInit, {
       headers: {
         "Content-Type":
           "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
