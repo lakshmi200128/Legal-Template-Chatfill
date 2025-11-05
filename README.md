@@ -5,7 +5,7 @@ Legal Template Chatfill is a Next.js web app that helps teams turn legal templat
 ### Highlights
 - **DOCX ingest:** Upload Microsoft Word templates up to 8 MB. The service extracts text with [`mammoth`](https://github.com/mwilliamson/mammoth.js) and looks for common placeholder patterns (`[]`, `<>`, `{{}}`, etc.).
 - **Guided chat:** The assistant walks through each detected placeholder, tracks your answers, and lets you jump back to revise any field.
-- **Live preview & export:** Watch values appear in the document preview (highlighted for clarity) and download the completed agreement as a `.docx` file generated with `html-docx-js`.
+- **Live preview & export:** Watch values appear in the document preview (highlighted for clarity) and download the completed agreement as a `.docx` file generated with `@turbodocx/html-to-docx`.
 - **Fast front end:** Built with the Next.js App Router, TypeScript, and Tailwind CSS (v4) for a responsive, single-page experience.
 
 ### Project Structure
@@ -14,10 +14,13 @@ src/
   app/
     api/
       upload/route.ts     # DOCX upload + placeholder extraction endpoint
+      download/route.ts   # DOCX generation and download endpoint
     layout.tsx            # Global layout & metadata
     page.tsx              # Main UI and conversational flow
   lib/
     placeholders.ts       # Placeholder detection helpers
+  types/
+    html-docx-js.d.ts    # Type definitions for DOCX libraries
 ```
 
 ### Local Setup
@@ -47,10 +50,19 @@ Placeholders are deduplicated case-insensitively and normalized into friendly la
 
 ### Deploying
 The app is ready for Vercel:
-1. Push the repo to GitHub.
+1. Push the repo to GitHub (already done!).
 2. Create a new Vercel project, import the repository, and select the default settings.
 3. Set `NEXT_DISABLE_TURBO=1` in the project environment variables if your build environment restricts port binding.
 4. Deploy—Vercel will provide a public URL suitable for sharing in the application email.
+
+### Tech Stack
+- **Framework:** Next.js 16.0.1 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **Document Processing:** 
+  - `mammoth` - DOCX to HTML conversion
+  - `@turbodocx/html-to-docx` - HTML to DOCX conversion (server-side)
+- **React:** 19.2.0
 
 ### Testing Checklist
 - `npm run lint`
