@@ -58,10 +58,22 @@ If you still want to use GitHub Pages, you'll need to:
 
 4. **⚠️ Important Limitation:** The upload and download features will NOT work because API routes require server-side processing. Only the static UI will work.
 
-**Note:** If you see an error about Pages not being enabled, make sure you've:
-- Enabled Pages in Settings → Pages
-- Selected "GitHub Actions" as the source
-- The workflow has the `enablement: true` parameter (already included)
+**⚠️ Important Setup Steps:**
+
+1. **You MUST enable GitHub Pages manually first** (the workflow cannot do this automatically):
+   - Go to: https://github.com/lakshmi200128/Legal-Template-Chatfill/settings/pages
+   - Under "Build and deployment":
+     - Source: Select **"GitHub Actions"**
+     - Click **Save**
+   
+2. **After enabling Pages**, the workflow will run on the next push
+
+3. **If you see "Resource not accessible by integration" error:**
+   - This means Pages is not enabled yet
+   - Go to Settings → Pages and enable it manually
+   - The workflow cannot auto-enable Pages due to permissions
+
+**Note:** This app has API routes which won't work on GitHub Pages. For full functionality, use Vercel instead.
 
 ### Other Deployment Options
 
