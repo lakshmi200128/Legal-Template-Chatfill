@@ -29,7 +29,22 @@ export async function POST(request: NextRequest) {
     const wrappedHtml = wrapHtmlForDocx(html);
     
     // Generate the document using html-to-docx (server-side library)
-    const buffer = await HtmlToDocx(wrappedHtml);
+    const result = await HtmlToDocx(wrappedHtml);
+
+    // Convert to Buffer - handle different return types
+    let buffer: Buffer;
+    
+    if (Buffer.isBuffer(result)) {
+      buffer = result;
+    } else if (result instanceof ArrayBuffer) {
+      buffer = Buffer.from(result);
+    } else if (result instanceof Blob) {
+      const arrayBuffer = await result.arrayBuffer();
+      buffer = Buffer.from(arrayBuffer);
+    } else {
+      // Fallback for any other type
+      buffer = Buffer.from(result as any);
+    }
 
     if (!buffer || buffer.length === 0) {
       throw new Error("Generated buffer is empty");
